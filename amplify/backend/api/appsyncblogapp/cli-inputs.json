@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "appsyncblogapp",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/paulodichone/Documents/WebDev/amplify-appsync-blog-course/amplify/backend/api/appsyncblogapp/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 365,
+      "apiKeyExpirationDate": "2023-02-06T00:48:49.108Z",
+      "keyDescription": "public api key"
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": [
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authappsyncblogapp1ff85604"
+      }
+    ]
+  }
+}
