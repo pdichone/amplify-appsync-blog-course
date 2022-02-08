@@ -15,6 +15,12 @@
       "auth": {
         "appsyncblogapp1ff85604": {},
         "true": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2fjykes4k8gb4",
+          "type": "manual"
+        }
       }
     }
   }

@@ -1,6 +1,6 @@
 projects:
   appsyncblogapp:
-    schemaPath: src/graphql/schema.json
+    schemaPath: amplify/backend/api/appsyncblogapp/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:

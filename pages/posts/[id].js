@@ -17,6 +17,7 @@ import "easymde/dist/easymde.min.css";
 const intialState = { message: "" };
 
 export default function Post({ post }) {
+  const [signedInUser, setSignedInUser] = useState(false);
   const [coverImage, setCoverImage] = useState(null);
   const [comment, setComment] = useState(intialState);
   const [showMe, setShowMe] = useState(false);
@@ -25,6 +26,25 @@ export default function Post({ post }) {
 
   function toggle() {
     setShowMe(!showMe);
+  }
+
+  //check for a logged in user or not
+  useEffect(() => {
+    authListener();
+  }, []); //check when app is loaded/mounted too!
+  async function authListener() {
+    Hub.listen("auth", (data) => {
+      switch (data.payload.event) {
+        case "signIn":
+          return setSignedInUser(true);
+        case "signOut":
+          return setSignedInUser(false);
+      }
+    });
+    try {
+      await Auth.currentAuthenticatedUser();
+      setSignedInUser(true);
+    } catch (err) {}
   }
 
   useEffect(() => {
@@ -67,14 +87,16 @@ export default function Post({ post }) {
       </div>
 
       <div>
-        <button
-          type='button'
-          className='mb-4 bg-green-600 
+        {signedInUser && (
+          <button
+            type='button'
+            className='mb-4 bg-green-600 
         text-white font-semibold px-8 py-2 rounded-lg'
-          onClick={toggle}
-        >
-          Write a Comment
-        </button>
+            onClick={toggle}
+          >
+            Write a Comment
+          </button>
+        )}
 
         {
           <div style={{ display: showMe ? "block" : "none" }}>
