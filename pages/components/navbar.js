@@ -38,9 +38,8 @@ const Navbar = () => {
         <Link href={url} key={index}>
           <a
             className='rounded-lg px-3 py-2 
-                     text-slate-700
-                     font-medium hover:bg-slage-100
-                     hover:text-slate-900'
+            text-slate-700
+             font-medium hover:bg-slate-100 hover:text-slate-900'
           >
             {" "}
             {title}
