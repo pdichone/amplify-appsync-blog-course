@@ -23,15 +23,23 @@ export default function Post({ post }) {
   const [showMe, setShowMe] = useState(false);
   const router = useRouter();
   const { message } = comment;
-
-  function toggle() {
-    setShowMe(!showMe);
-  }
+  useEffect(() => {
+    updateCoverImage();
+  }, []);
 
   //check for a logged in user or not
   useEffect(() => {
     authListener();
   }, []); //check when app is loaded/mounted too!
+
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+  function toggle() {
+    setShowMe(!showMe);
+  }
+
+  
   async function authListener() {
     Hub.listen("auth", (data) => {
       switch (data.payload.event) {
@@ -47,18 +55,14 @@ export default function Post({ post }) {
     } catch (err) {}
   }
 
-  useEffect(() => {
-    updateCoverImage();
-  }, []);
+  
   async function updateCoverImage() {
     if (post.coverImage) {
       const imageKey = await Storage.get(post.coverImage);
       setCoverImage(imageKey);
     }
   }
-  if (router.isFallback) {
-    return <div>Loading...</div>;
-  }
+  
 
   async function createTheComment() {
     if (!message) return;
@@ -122,15 +126,13 @@ export default function Post({ post }) {
 
 export async function getStaticPaths() {
   const postData = await API.graphql({
-    query: listPosts,
-  });
-  const paths = postData.data.listPosts.items.map((post) => ({
-    params: { id: post.id },
-  }));
+    query: listPosts
+  })
+  const paths = postData.data.listPosts.items.map(post => ({ params: { id: post.id }}))
   return {
     paths,
-    fallback: true,
-  };
+    fallback: true
+  }
 }
 
 export async function getStaticProps({ params }) {
