@@ -64,11 +64,11 @@ You can also manually set up your resources if you would like. If you would like
 
 1. Install & configure the Amplify CLI
 
-```bash
-  npm install -g @aws-amplify
+````bash
+ npm install -g @aws-amplify
 
-  amplify configure
-```
+ amplify configure
+ ```
 
 2. Clone the Blog App
 
@@ -94,83 +94,86 @@ You can also manually set up your resources if you would like. If you would like
 
 `Choose Cognito User Pools as the authentication type. When prompted for the GraphQL schema, use the following schema: `
 
-**The simple schema (the beginning of the course this is what's used) **
+**The simple schema (the beginning of the course this is what's used)**
 
-```
+````
+
 At first, use this one:
 
 type Post
-   @model
-   @auth(
-     rules: [
-       { allow: owner, ownerField: "username" }
-       { allow: public, operations: [read] }
-     ]
-   ) {
-   id: ID!
-   title: String!
-   content: String!
-   username: String
-     @index(name: "postsByUsername", queryField: "postsByUsername")
-   coverImage: String
- }
+@model
+@auth(
+rules: [
+{ allow: owner, ownerField: "username" }
+{ allow: public, operations: [read] }
+]
+) {
+id: ID!
+title: String!
+content: String!
+username: String
+@index(name: "postsByUsername", queryField: "postsByUsername")
+coverImage: String
+}
 
 ```
 
-** This is the final Schema **
+**This is the final Schema**
 
 ```
 
 # This is the final schema
+
 type Post
-  @model
-  @auth(
-    rules: [
-      { allow: owner, ownerField: "username" }
-      { allow: public, operations: [read] }
-    ]
-  ) {
-  id: ID!
-  title: String!
-  content: String!
-  username: String
-    @index(name: "postsByUsername", queryField: "postsByUsername")
-  coverImage: String
-  comments: [Comment] @hasMany(indexName: "byPost", fields: ["id"]) #check out: https://docs.amplify.aws/cli/graphql/data-modeling/#has-many-relationship
+@model
+@auth(
+rules: [
+{ allow: owner, ownerField: "username" }
+{ allow: public, operations: [read] }
+]
+) {
+id: ID!
+title: String!
+content: String!
+username: String
+@index(name: "postsByUsername", queryField: "postsByUsername")
+coverImage: String
+comments: [Comment] @hasMany(indexName: "byPost", fields: ["id"]) #check out: https://docs.amplify.aws/cli/graphql/data-modeling/#has-many-relationship
 }
 
 type Comment
-  @model
-  @auth(
-    rules: [
-      { allow: owner, ownerField: "createdBy" }
-      { allow: public, operations: [read] }
-    ]
-  ) {
-  id: ID!
-  message: String
-  post: Post @belongsTo(fields: ["postID"])
-  postID: ID @index(name: "byPost")
+@model
+@auth(
+rules: [
+{ allow: owner, ownerField: "createdBy" }
+{ allow: public, operations: [read] }
+]
+) {
+id: ID!
+message: String
+post: Post @belongsTo(fields: ["postID"])
+postID: ID @index(name: "byPost")
 }
 type Subscription {
-  newOnCreatePost: Post @aws_subscribe(mutations: ["createPost"])
-  #newOnUpdatedPost: Post @aws_subscribe(mutations: ["updatePost"])
+newOnCreatePost: Post @aws_subscribe(mutations: ["createPost"])
+#newOnUpdatedPost: Post @aws_subscribe(mutations: ["updatePost"])
 }
 
 ```
 
 8. Run `push` command to create the resources in your account:
 
-`amplify push`
+ `amplify push`
 
 9. Run the project
 
-`npm run dev`
+ `npm run dev`
 
 10. Deleting the project (caution: this command deletes the entire project in the cloud)
 
-`amplify delete`
+ `amplify delete`
 
 Happy coding!
 
 Paulo
+```
