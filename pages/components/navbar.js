@@ -30,42 +30,47 @@ const Navbar = () => {
 
   return (
     <nav className="hamnav flex justify-between items-center py-3">
-    <div>
-      <img width="130px" src={RyzLogo.src} alt="ryzLogo" />
-    </div>
+      <Link href={"/"}>
+        <div>
+          <img width="130px" src={RyzLogo.src} alt="ryzLogo" />
+        </div>
+      </Link>
+      {/* Hamburger Icon */}
+      <div className="md:hidden">
+        <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          {/* Replace with your hamburger icon */}
+          <span>Menu</span>
+        </button>
+      </div>
 
-    {/* Hamburger Icon */}
-    <div className="md:hidden">
-      <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-        {/* Replace with your hamburger icon */}
-        <span>Menu</span>
-      </button>
-    </div>
+      {/* Navigation Links */}
+      <div
+        className={`flex flex-col md:flex-row space-x-0 md:space-x-4 ${
+          isMenuOpen ? "block" : "hidden"
+        } md:block`}
+      >
+        {[
+          ["Home", "/"],
+          ["Create Post", "/create-post"],
+          // ["Profile", "/profile"],
+        ].map(([title, url], index) => (
+          <Link href={url} key={index}>
+            <a className="rounded-lg px-3 py-2 text-white text-xl font-medium hover:bg-slate-100 hover:text-slate-900">
+              {title}
+            </a>
+          </Link>
+        ))}
 
-    {/* Navigation Links */}
-    <div className={`flex flex-col md:flex-row space-x-0 md:space-x-4 ${isMenuOpen ? 'block' : 'hidden'} md:block`}>
-      {[
-        ["Home", "/"],
-        ["Create Post", "/create-post"],
-        ["Profile", "/profile"],
-      ].map(([title, url], index) => (
-        <Link href={url} key={index}>
-          <a className="rounded-lg px-3 py-2 text-white text-xl font-medium hover:bg-slate-100 hover:text-slate-900">
-            {title}
-          </a>
-        </Link>
-      ))}
-
-      {/* Conditional Rendering based on signedUser */}
-      {signedUser && (
-        <Link href="/my-posts">
-          <a className="rounded-lg px-3 py-2 text-white font-medium hover:bg-slate-100 hover:text-slate-900">
-            My Post
-          </a>
-        </Link>
-      )}
-    </div>
-  </nav>
+        {/* Conditional Rendering based on signedUser */}
+        {signedUser && (
+          <Link href="/my-posts">
+            <a className="rounded-lg px-3 py-2 text-white text-xl font-medium hover:bg-slate-100 hover:text-slate-900">
+              My Post
+            </a>
+          </Link>
+        )}
+      </div>
+    </nav>
   );
 };
 export default Navbar;
