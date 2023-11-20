@@ -57,11 +57,11 @@ export default function Home() {
     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
         {posts.map((post, index) => (
             <Link key={index} href={`/posts/${post.id}`}>
-                <div className='border-b border-gray-300 rounded-t-lg shadow hover:shadow-md transition-shadow duration-300 ease-in-out bg-white'>
+                <div className='border-b border-gray-300 rounded-lg shadow hover:shadow-md transition-shadow duration-300 ease-in-out bg-white'>
                     {post.coverImage && (
                         <img
                             src={post.coverImage}
-                            className='w-full h-36 object-cover rounded-md'
+                            className='w-full h-36 object-cover rounded-t-md'
                         />
                     )}
                     <div className='mt-2 p-4'>
