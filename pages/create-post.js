@@ -33,7 +33,7 @@ function CreatePost() {
     post.id = id;
 
     if (image) {
-      const filename = `${image.name}_${uuid()}`;
+      const filename = `${image.name}_${uuid()}` ;
       post.coverImage = filename;
       await Storage.put(filename, image);
     }
