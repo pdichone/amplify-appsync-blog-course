@@ -13,18 +13,12 @@ export const createPost = /* GraphQL */ `
       username
       coverImage
       comments {
-        items {
-          id
-          message
-          postID
-          createdAt
-          updatedAt
-          createdBy
-        }
         nextToken
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -40,18 +34,12 @@ export const updatePost = /* GraphQL */ `
       username
       coverImage
       comments {
-        items {
-          id
-          message
-          postID
-          createdAt
-          updatedAt
-          createdBy
-        }
         nextToken
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -67,18 +55,12 @@ export const deletePost = /* GraphQL */ `
       username
       coverImage
       comments {
-        items {
-          id
-          message
-          postID
-          createdAt
-          updatedAt
-          createdBy
-        }
         nextToken
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -96,16 +78,15 @@ export const createComment = /* GraphQL */ `
         content
         username
         coverImage
-        comments {
-          nextToken
-        }
         createdAt
         updatedAt
+        __typename
       }
       postID
       createdAt
       updatedAt
       createdBy
+      __typename
     }
   }
 `;
@@ -123,16 +104,15 @@ export const updateComment = /* GraphQL */ `
         content
         username
         coverImage
-        comments {
-          nextToken
-        }
         createdAt
         updatedAt
+        __typename
       }
       postID
       createdAt
       updatedAt
       createdBy
+      __typename
     }
   }
 `;
@@ -150,16 +130,15 @@ export const deleteComment = /* GraphQL */ `
         content
         username
         coverImage
-        comments {
-          nextToken
-        }
         createdAt
         updatedAt
+        __typename
       }
       postID
       createdAt
       updatedAt
       createdBy
+      __typename
     }
   }
 `;

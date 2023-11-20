@@ -7,3 +7,10 @@
     --amplify-primary-tint: #498a49;
     --amplify-primary-shade: #c9794b;
   }
+
+*{
+  /* border: 1px solid red; */
+}
+.hamnav{
+  background-color: #343434;
+}

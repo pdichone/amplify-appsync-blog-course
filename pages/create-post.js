@@ -56,21 +56,25 @@ function CreatePost() {
   return (
     <div>
       <h1
-        className='text-3xl font-semibold tracking-wide
-      mt-6'
+        className='text-4xl text-center text-white font-semibold tracking-wide
+      mt-6 mb-3'
       >
-        Create new Post
+        Create New Post
       </h1>
+      <lable className="text-2xl font-semibold text-white" htmlFor="title">Title</lable>
       <input
         onChange={onChange}
+        id="title"
         name='title'
         placeholder='Title'
         value={post.title}
-        className='border-b pb-2 text-lg my-4
-         focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2'
+        className='mt-3 text-lg p-4 rounded-lg
+        focus:outline-none w-full'
       />
       {image && <img src={URL.createObjectURL(image)} className='my-4' />}
+      <p className="text-2xl text-white font-semibold mb-3 mt-6">Description</p>
       <SimpleMDE
+        className="bg-white rounded-lg"
         value={post.content}
         onChange={(value) => setPost({ ...post, content: value })}
       />
@@ -83,10 +87,10 @@ function CreatePost() {
       <button
         type='button'
         className='bg-green-600 text-white 
-        font-semibold px-8 py-2 rounded-lg mr-2'
+        font-semibold px-8 py-2 rounded-lg mr-4 mt-8'
         onClick={uploadImage}
       >
-        Upload Cover Image
+        Upload Image Image
       </button>
       <button
         type='button'
